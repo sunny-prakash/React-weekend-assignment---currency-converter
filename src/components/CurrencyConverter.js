@@ -9,13 +9,15 @@ export default function CurrencyConverter() {
     const [symbolArray, setSymbolArray] = useState(null);
     const [valueArray, setValueArray] = useState(null);
 
-    useEffect(async () => {
-        let res = await fetch("http://api.exchangeratesapi.io/v1/latest?access_key=985e002b0db057e57f8a4e8ea0bb32e7&base=");
-        let data = await res.json();
-        setData(data.rates);
-        setValueArray(Object.values(data.rates));
-        setSymbolArray(Object.keys(data.rates));
-    }, []);
+    useEffect(() => {
+        (async () => {
+            let res = await fetch("http://api.exchangeratesapi.io/v1/latest?access_key=985e002b0db057e57f8a4e8ea0bb32e7&base=");
+            let data = await res.json();
+            setData(data.rates);
+            setValueArray(Object.values(data.rates));
+            setSymbolArray(Object.keys(data.rates));
+        })();
+    }, [input1, selection1, input2, selection2]);
 
     const inputRates1 = (e) => {
         e.preventDefault();
@@ -44,11 +46,23 @@ export default function CurrencyConverter() {
     const slectionChangeOne = (e) => {
         e.preventDefault();
         setSelection1(e.target.value);
+        let sel1 = e.target.value;
+        let currency1 = valueArray[symbolArray.indexOf(selection2)];
+        let euro = input2 / currency1;
+        let total = euro * valueArray[symbolArray.indexOf(sel1)];
+        total = total.toFixed(2);
+        setInput1(total);
     };
 
     const slectionChangeTwo = (e) => {
         e.preventDefault();
         setSelection2(e.target.value);
+        let sel2 = e.target.value;
+        let currency1 = valueArray[symbolArray.indexOf(selection1)];
+        let euro = input1 / currency1;
+        let total = euro * valueArray[symbolArray.indexOf(sel2)];
+        total = total.toFixed(2);
+        setInput2(total);
     };
 
     return (
