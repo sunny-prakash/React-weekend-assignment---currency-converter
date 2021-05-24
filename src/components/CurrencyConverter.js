@@ -19,8 +19,10 @@ export default function CurrencyConverter() {
 
     const inputRates1 = (e) => {
         e.preventDefault();
-        setInput1(e.target.value);
         let inp1 = e.target.value;
+        setInput1(inp1);
+        if (inp1 < 0 || inp1 === "-") return;
+
         let currency1 = valueArray[symbolArray.indexOf(selection1)];
         let euro = inp1 / currency1;
         let total = euro * valueArray[symbolArray.indexOf(selection2)];
@@ -29,8 +31,10 @@ export default function CurrencyConverter() {
     };
     const inputRates2 = (e) => {
         e.preventDefault();
-        setInput2(e.target.value);
         let inp2 = e.target.value;
+        setInput2(inp2);
+        if (inp2 < 0 || inp2 === "-") return;
+
         let currency2 = valueArray[symbolArray.indexOf(selection2)];
         let euro = inp2 / currency2;
         let total = euro * valueArray[symbolArray.indexOf(selection1)];
