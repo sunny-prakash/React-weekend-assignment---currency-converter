@@ -1,12 +1,34 @@
 h1 {
     color: #27aedb;
     text-align: center;
-    }
-    
+}
 
-button{
+button {
     color: #27aedb;
     text-align: center;
     justify-content: center;
     align-items: center;
+}
+
+.currency_box {
+    border: 2px solid grey;
+    border-radius: 0.7rem;
+    width: 50vw;
+    height: auto;
+    margin: 5rem auto;
+}
+
+.center {
+    text-align: center;
+    margin: 1rem auto;
+}
+
+.ma3 {
+    margin: 1rem;
+}
+
+.flex_box {
+    display: flexbox;
+    justify-content: space-around;
+    flex-wrap: wrap;
 }
